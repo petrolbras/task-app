@@ -13,10 +13,14 @@
             done: false
         })
     };
+
+    function toggleDone(task: Task){
+        task.done = !task.done
+    }
 </script>
 
 <main class="mx-auto m-6 max-w-[800px]">
     <h1>{message}</h1>
     <TaskForm {addTask}/>
-    <TaskList {tasks}/>
+    <TaskList {tasks} {toggleDone}/>
 </main>
