@@ -17,10 +17,15 @@
     function toggleDone(task: Task){
         task.done = !task.done
     }
+
+    function removeTask(index: number){
+        tasks.splice(index, 1)
+    }
 </script>
 
 <main class="mx-auto m-6 max-w-[800px]">
     <h1>{message}</h1>
     <TaskForm {addTask}/>
-    <TaskList {tasks} {toggleDone}/>
-</main>
+    <p>Total Tasks: {tasks.length}</p>
+    <TaskList {tasks} {toggleDone} {removeTask}/>
+</main> 
