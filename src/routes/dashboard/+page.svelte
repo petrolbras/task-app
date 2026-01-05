@@ -23,8 +23,10 @@
             case "Done": {
                 return tasks.filter((task) => task.done)
             }
+            default: {
+                return tasks;
+            }
         }
-        return tasks;
     });
 
     function addTask(newTask: string){

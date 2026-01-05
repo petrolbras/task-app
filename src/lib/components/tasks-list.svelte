@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Task } from '$lib/types/types'
+	import { fade } from 'svelte/transition';
 
     let { tasks, toggleDone, removeTask }: {
         tasks: Task[];
@@ -10,8 +11,8 @@
 </script>
 
 <section>
-    {#each tasks as task}
-    <article class="task-container">
+    {#each tasks as task(task.id)}
+    <article class="task-container" transition:fade>
         <label for="">
             <input
             checked={task.done}
