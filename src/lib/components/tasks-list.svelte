@@ -13,7 +13,8 @@
     {#each tasks as task, index}
     <article class="task-container">
         <label for="">
-            <input 
+            <input
+            checked={task.done}
             onchange={() => toggleDone(task)}
             type="checkbox">
             <span class:done={task.done}>{task.title}</span>
