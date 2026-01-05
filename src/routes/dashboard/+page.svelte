@@ -3,8 +3,13 @@
     import TaskList from '$lib/components/tasks-list.svelte'
     import type { Task } from '$lib/types/types'
 
-    let message = "Tasks App"
+    let message = "Stupid tasks App"
     let tasks = $state<Task[]>([]);
+    let totalDone = $derived(
+        tasks.reduce(
+            (total, task) => total + Number(task.done), 0
+        )
+    )
 
     function addTask(newTask: string){
         tasks.push({
@@ -25,7 +30,8 @@
 
 <main class="mx-auto m-6 max-w-[800px]">
     <h1>{message}</h1>
+    <p>Type your desired task here!</p>
     <TaskForm {addTask}/>
-    <p>Total Tasks: {tasks.length}</p>
+    <p> {totalDone} / {tasks.length} Tasks Completed</p>
     <TaskList {tasks} {toggleDone} {removeTask}/>
 </main> 
