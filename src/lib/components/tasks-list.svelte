@@ -4,13 +4,13 @@
     let { tasks, toggleDone, removeTask }: {
         tasks: Task[];
         toggleDone: (task: Task) => void;
-        removeTask: (index: number) => void;
+        removeTask: (id: string) => void;
     } = $props()
 
 </script>
 
 <section>
-    {#each tasks as task, index}
+    {#each tasks as task}
     <article class="task-container">
         <label for="">
             <input
@@ -19,7 +19,7 @@
             type="checkbox">
             <span class:done={task.done}>{task.title}</span>
         </label>
-        <button class="outline" onclick={() => removeTask(index)}>remove</button>
+        <button class="outline" onclick={() => removeTask(task.id)}>remove</button>
     </article>
     {/each}
 </section>
