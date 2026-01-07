@@ -1,4 +1,4 @@
 export function sanitizeInput(title: string) {
-    return title.trim().substring(0, 50)
+    return title.trim().substring(0, 100)
 }
 

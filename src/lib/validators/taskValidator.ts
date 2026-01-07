@@ -8,11 +8,10 @@ export function validateInput(title: string) {
     let isNotAlphabetic = /[^a-zA-Z0-9]/g.test(title)
 
     if (isNotAlphabetic === true){
-        throw new Error("A title must contain only alphanumeric characters")
+        throw new Error("A title must contain only alphanumeric characters!")
     }
 
     if (title.length > maxLimit) {
-        throw new Error(`The max limit for a task's name is ${maxLimit} characters`)
+        throw new Error(`The max limit for a task's name is ${maxLimit} characters!`)
     }
-
 }
