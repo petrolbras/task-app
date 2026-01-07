@@ -55,16 +55,14 @@
     <p>Type your desired task here!</p>
     <TaskForm {addTask} {error}/>
     <p> {totalDone} / {tasks.length} Tasks Completed</p>
-    <div class="filter-container">
-        <button onclick={() => currentFilter = "All"} class:contrast={currentFilter === "All"}>All</button>
-        <button onclick={() => currentFilter = "Todo"} class:contrast={currentFilter === "Todo"}>Todo</button>
-        <button onclick={() => currentFilter = "Done"} class:contrast={currentFilter === "Done"}>Done</button>
+    <div class="flex justify-between mb-4">
+        <div class="flex gap-2.5">
+            <button onclick={() => currentFilter = "All"} class:contrast={currentFilter === "All"}>All</button>
+            <button onclick={() => currentFilter = "Todo"} class:contrast={currentFilter === "Todo"}>Todo</button>
+            <button onclick={() => currentFilter = "Done"} class:contrast={currentFilter === "Done"}>Done</button>
+        </div>
+        <button class="btn-delete">Remove all Tasks</button>
     </div>
     <TaskList tasks={filteredTasks} {toggleDone} {removeTask} />
-</main> 
+</main>
 
-<style>
-    .filter-container {
-        margin-bottom: 1rem;
-    }
-</style>

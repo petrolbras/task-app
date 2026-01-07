@@ -19,18 +19,10 @@
         <input name="newTask" bind:value={newTask}>
     </label>
     
-    <div class="button-container">
+    <div class="flex justify-between mb-6">
         <button>Add</button>
         {#if error}
         <p style="color:#EE4B2B" transition:fade>{error}</p>
         {/if}
     </div>
 </form>
-
-<style>
-        .button-container {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-    }
-</style>

@@ -12,13 +12,13 @@
 
 <section>
     {#each tasks as task(task.id)}
-    <article class="task-container" transition:fade>
+    <article class="flex justify-between" transition:fade>
         <label for="">
             <input
             checked={task.done}
             onchange={() => toggleDone(task)}
             type="checkbox">
-            <span class:done={task.done}>{task.title}</span>
+            <span class:line-through={task.done}>{task.title}</span>
         </label>
         <button class="outline" onclick={() => removeTask(task.id)}>remove</button>
     </article>
@@ -29,14 +29,4 @@
     article {
         box-shadow: none;
     }
-
-    .done {
-        text-decoration: line-through;
-    }
-
-    .task-container {
-        display: flex;
-        justify-content: space-between;
-    }
-
 </style>
