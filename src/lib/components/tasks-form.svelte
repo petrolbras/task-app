@@ -1,7 +1,10 @@
 <script lang="ts">
+    import { fade } from 'svelte/transition'
+
     let newTask = $state("");
-    let { addTask }: {
+    let { addTask, error }: {
         addTask: (newTask: string) => void
+        error: string | null
     } = $props()
 
     function formSubmitted(e: SubmitEvent) {
@@ -15,15 +18,19 @@
     <label for="">
         <input name="newTask" bind:value={newTask}>
     </label>
+    
     <div class="button-container">
         <button>Add</button>
+        {#if error}
+        <p style="color:#EE4B2B" transition:fade>{error}</p>
+        {/if}
     </div>
 </form>
 
 <style>
-    .button-container {
+        .button-container {
         display: flex;
-        justify-content: end;
+        justify-content: space-between;
         margin-bottom: 1rem;
     }
 </style>

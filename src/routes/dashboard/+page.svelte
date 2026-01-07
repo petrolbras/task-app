@@ -3,9 +3,11 @@
     import TaskList from '$lib/components/tasks-list.svelte'
     import type { filter } from '$lib/types/types'
     import type { Task } from '$lib/types/types'
+    import { createTask } from '$lib/services/createTask'
 
     let message = "Stupid tasks App"
     let tasks = $state<Task[]>([]);
+    let error = $state<string | null>(null)
     let totalDone = $derived(
         tasks.reduce(
             (total, task) => total + Number(task.done), 0
@@ -29,17 +31,19 @@
         }
     });
 
-    function addTask(newTask: string){
-        tasks.push({
-            id: crypto.randomUUID(),
-            title: newTask, 
-            done: false
-        })
-    };
-
     function toggleDone(task: Task){
         task.done = !task.done
     }
+
+    function addTask(title: string){
+        try {
+            const task = createTask(title)
+            tasks.push(task)
+            error = null
+        } catch (e) {
+            error = (e as Error).message
+        }
+    };
 
     function removeTask(id: string){
         const index = tasks.findIndex((task) => task.id === id)
@@ -50,7 +54,7 @@
 <main class="mx-auto m-6 max-w-[800px]">
     <h1>{message}</h1>
     <p>Type your desired task here!</p>
-    <TaskForm {addTask}/>
+    <TaskForm {addTask} {error}/>
     <p> {totalDone} / {tasks.length} Tasks Completed</p>
     <div class="filter-container">
         <button onclick={() => currentFilter = "All"} class:contrast={currentFilter === "All"}>All</button>
