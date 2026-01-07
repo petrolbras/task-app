@@ -48,6 +48,10 @@
         const index = tasks.findIndex((task) => task.id === id)
         tasks.splice(index, 1)
     }
+
+    function deleteAllTasks(tasks: Task[]) {
+        tasks.splice(0, tasks.length)
+    }
 </script>
 
 <main class="mx-auto m-6 max-w-[800px]">
@@ -61,7 +65,7 @@
             <button onclick={() => currentFilter = "Todo"} class:contrast={currentFilter === "Todo"}>Todo</button>
             <button onclick={() => currentFilter = "Done"} class:contrast={currentFilter === "Done"}>Done</button>
         </div>
-        <button class="btn-delete">Remove all Tasks</button>
+        <button onclick={() => deleteAllTasks(tasks)} class="btn-delete">Remove all Tasks</button>
     </div>
     <TaskList tasks={filteredTasks} {toggleDone} {removeTask} />
 </main>
