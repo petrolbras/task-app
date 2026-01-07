@@ -5,7 +5,6 @@
     import type { Task } from '$lib/types/types'
     import { createTask } from '$lib/services/createTask'
 
-    let message = "Stupid tasks App"
     let tasks = $state<Task[]>([]);
     let error = $state<string | null>(null)
     let totalDone = $derived(
@@ -52,7 +51,7 @@
 </script>
 
 <main class="mx-auto m-6 max-w-[800px]">
-    <h1>{message}</h1>
+    <h1>Stupid tasks app</h1>
     <p>Type your desired task here!</p>
     <TaskForm {addTask} {error}/>
     <p> {totalDone} / {tasks.length} Tasks Completed</p>
